@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+      <li class="sidebar-item"><%= link_to "Your Pads", pads_path, class: "sidebar-link active" %></li>
+      <li class="sidebar-item"><%= link_to "Your Bookings", pads_path, class: "sidebar-link" %></li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        List of Pads
+      </div>
+      <div class="panel-body">
+
+        <% @pads.each do |pad| %>
+        <div class="row">
+          <div class="col-md-2">
+            <%= image_tag pad.photos[0].image.url(:thumb) if pad.photos.length > 0 %>
+          </div>
+          <div class="col-md-7">
+            <h4><%= pad.pad_name %></h4>
+          </div>
+          <div class="col-md-3 right">
+            <%= link_to "Update", edit_pad_path(pad), class: "btn btn-primary" %>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
