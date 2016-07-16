@@ -1,0 +1,12 @@
+<%= form_for([@pad, @pad.reviews.new]) do |f| %>
+
+  <%= f.text_field :star %>
+  <%= f.text_field :comment %>
+
+  <%= f.hidden_field :pad_id, value: @pad.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

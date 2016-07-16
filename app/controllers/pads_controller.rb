@@ -8,6 +8,11 @@ class PadsController < ApplicationController
 
   def show
     @photos = @pad.photos
+
+    @booked = Reservation.where("pad_id = ? AND user_id = ?", @pad.id, current_user.id).present? if current_user
+
+    @reviews = @pad.reviews
+    @hasReview = @reviews.find_by(user_id: current_user.id) if current_user
   end
 
   def new
@@ -27,7 +32,7 @@ class PadsController < ApplicationController
       @photos = @pad.photos
       redirect_to edit_pad_path(@pad), notice: "Saved..."
     else
-      flash[:alert] = "Please provide all information for this room."
+      flash[:alert] = "Please provide all information for this pad."
       render :new
     end
   end
@@ -52,7 +57,7 @@ class PadsController < ApplicationController
       redirect_to edit_pad_path(@pad), notice: "Updated..."
 
     else
-      flash[:alert] = "Please provide all information for this room."
+      flash[:alert] = "Please provide all information for this pad."
       render :edit
     end
   end
