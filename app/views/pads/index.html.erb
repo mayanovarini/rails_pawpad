@@ -2,7 +2,8 @@
   <div class="col-md-3">
     <ul class="sidebar-list">
       <li class="sidebar-item"><%= link_to "Your Pads", pads_path, class: "sidebar-link active" %></li>
-      <li class="sidebar-item"><%= link_to "Your Bookings", pads_path, class: "sidebar-link" %></li>
+      <li class="sidebar-item"><%= link_to "Your Reservations", your_reservations_path, class: "sidebar-link" %></li>
+      <li class="sidebar-item"><%= link_to "Your Pet's Itinerary", your_trips_path, class: "sidebar-link" %></li>
     </ul>
   </div>
   <div class="col-md-9">
@@ -15,10 +16,14 @@
         <% @pads.each do |pad| %>
         <div class="row">
           <div class="col-md-2">
+            <%= link_to pad_path(pad) do %>
             <%= image_tag pad.photos[0].image.url(:thumb) if pad.photos.length > 0 %>
+            <% end %>
           </div>
           <div class="col-md-7">
+            <%= link_to pad_path(pad) do %>
             <h4><%= pad.pad_name %></h4>
+            <% end %>
           </div>
           <div class="col-md-3 right">
             <%= link_to "Update", edit_pad_path(pad), class: "btn btn-primary" %>

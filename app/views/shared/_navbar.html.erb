@@ -23,8 +23,10 @@
             <%= image_tag avatar_url(current_user), class: "img-circle avatar-small" %>&nbsp;
             <%= current_user.fullname %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Your Pad Bookings</a></li>
-              <li><a href="#">Wish list</a></li>
+              <li><%= link_to "Your Pads", pads_path %></li>
+              <li><%= link_to "Your Reservations", your_reservations_path %></li>
+              <li><%= link_to "Your Pet's Itinerary", your_trips_path %></li>
+
               <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Account Setting</a></li>
@@ -34,11 +36,15 @@
         <% end %>
 
         <li>
-          <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Message</a>
+          <%= link_to conversations_path do %>
+            <i class="fa fa-envelope-o" aria-hidden="true"></i> Message
+          <% end %>
         </li>
 
         <li>
-          <a href="#"><i class="fa fa-paw" aria-hidden="true"></i> Become a Pad Host</a>
+          <%= link_to new_pad_path do %>
+          <i class="fa fa-paw" aria-hidden="true"></i> Become a Pad Host
+          <% end %>
         </li>
 
       </ul>
