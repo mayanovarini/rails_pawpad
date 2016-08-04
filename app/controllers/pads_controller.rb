@@ -32,7 +32,6 @@ class PadsController < ApplicationController
       @photos = @pad.photos
       redirect_to edit_pad_path(@pad), notice: "Saved..."
     else
-      flash[:alert] = "Please provide all information for this pad."
       render :new
     end
   end
@@ -55,13 +54,11 @@ class PadsController < ApplicationController
       end
 
       redirect_to edit_pad_path(@pad), notice: "Updated..."
-
     else
-      flash[:alert] = "Please provide all information for this pad."
       render :edit
     end
   end
-
+  
   private
     def set_pad
       @pad = Pad.find(params[:id])
